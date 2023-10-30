@@ -1,0 +1,35 @@
+.confirm{
+    width: 140px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: #2f82e8;
+    color: white;
+    cursor: pointer;
+}
+.confirm_clicked{
+    width: 140px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: #20ec27;
+    color: white;
+    border: 4px solid white;
+    cursor: pointer;
+}
+.idle{
+    width: 140px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: gray;
+    color: black;
+    border: 4px solid whitesmoke;
+    cursor: pointer;
+}
+.abort{
+    width: 75px;
+    height: 75px;
+    border : 4px  solid #ed24a0;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: black;
+    cursor: pointer;
+}

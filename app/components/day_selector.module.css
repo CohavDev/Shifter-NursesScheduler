@@ -1,0 +1,8 @@
+.primary{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 7%;
+    border:5px solid rgb(100, 100, 194);
+    display: inline-flex;
+    flex-direction: column;
+}

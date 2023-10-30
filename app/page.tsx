@@ -1,6 +1,11 @@
 import Image from 'next/image'
-
+import { db } from './firebase/firebase.config';
 export default function Home() {
+    const app = db.app
+    console.log("main page, initalized config firebase app, name: " + app.name)
+    // const analytics = getAnalytics(app)
+  
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
