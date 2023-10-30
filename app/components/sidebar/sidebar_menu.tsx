@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import SideBarItem from "./sidebar_item";
 import menuIcon from "../../assets/menu.png";
-export default function SideBarMenu() {
+import { signInWithGoogle } from "../../firebase/authWithGoogle";
+import { getAuth } from "firebase/auth";
+import { app } from "@/app/firebase/firebase.config";
+export default function SideBarMenu(props: any) {
   const [isOpen, setOpen] = useState(false);
   return (
     <div
@@ -25,10 +28,10 @@ export default function SideBarMenu() {
           width="48px"
           height="48px"
           style={{
-             margin: "10px",
-             transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-             transition: "transform 0.6s"
-            }}
+            margin: "10px",
+            transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+            transition: "transform 0.6s",
+          }}
         ></img>
       </button>
       <div
@@ -39,12 +42,15 @@ export default function SideBarMenu() {
           alignItems: "center",
           width: "20vw",
           height: "100%",
-          backgroundColor: "whitesmoke"
+          backgroundColor: "whitesmoke",
         }}
       >
-        <SideBarItem text = "עריכת משמרות"/>
-        <SideBarItem text = "צפייה במשמרות" />
-        <SideBarItem text = "התנתקות" />
+        <SideBarItem text="עריכת משמרות" />
+        <SideBarItem text="צפייה במשמרות" />
+        <SideBarItem
+          text={props.isLogged ? "מחובר" : "התחברות"}
+          href={!props.isLogged ? signInWithGoogle : () => {}}
+        />
       </div>
     </div>
   );

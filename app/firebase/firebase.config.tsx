@@ -11,7 +11,7 @@ import { getFirestore } from 'firebase/firestore';
   appId:"1:624891159726:web:c38b4c85d5f9939a11793f",
   measurementId:"G-J0EMVZT9ES"
 }
- const app = initializeApp(config)
+export const app = initializeApp(config)
  console.log("firebase.config, initalized: " + app.name)
     // const analytics = getAnalytics(app)
-  export const db = getFirestore(app)
+export const db = getFirestore(app)

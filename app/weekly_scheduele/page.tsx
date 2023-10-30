@@ -6,6 +6,8 @@ import loadDataByWeek from "../firebase/loadDataFunctions";
 import saveDataByWeek from "../firebase/saveDataFunctions";
 import wallpaper from "../assets/Wallpaper.png"
 import SideBarMenu from "../components/sidebar/sidebar_menu";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { app } from '../firebase/firebase.config'
 export default function(){
     const defaultData = {
         sunday:[0,0,0],
@@ -22,6 +24,7 @@ export default function(){
     const [data, setData] = useState(defaultData)
     const [isUpdated, setUpdated] = useState(true)
     const [isLoading, setLoading] = useState(false)
+    const [userName, setUserName] = useState("")
     const callBackChangeWeekNumber = (newWeekNumber:number)=>{
         console.log("changing week number...(%d)",newWeekNumber)
         if(weekNumber <=0 || weekNumber >=53){
@@ -56,6 +59,15 @@ export default function(){
         const firstandLastDays = getFirstandLastDays(tempWeekNumber)
         setFirstDay(firstandLastDays[0])
         setLastDay(firstandLastDays[1])
+        const auth = getAuth(app)
+        onAuthStateChanged(auth, (user)=>{
+            if(user){
+                console.log("\n\n\nuser = ",user.displayName)
+                if(user.displayName){
+                    setUserName(user.displayName)
+                }
+            }
+        })
 
     },[])
     useEffect(()=>{
@@ -71,7 +83,7 @@ export default function(){
             <div style={
                 {display: "flex", flexDirection:"column", justifyContent:"center", 
                 alignItems:"center"}}>
-                <SideBarMenu/>
+                <SideBarMenu isLogged = {userName != ""}/>
                 <WeeklyScheduele 
                     weekNumber = {weekNumber} firstDate = {firstDay} endDate = {lastDay} 
                     weeklyData = {data} setWeeklyData = {callBackSetData} 

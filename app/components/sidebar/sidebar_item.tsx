@@ -3,6 +3,7 @@ import logo from "../../assets/user.png"
 export default function SideBarItem(props:any) {
   return (
     <button
+      onClick={props.href}
       style={{
         display: "flex",
         flexDirection: "row",
