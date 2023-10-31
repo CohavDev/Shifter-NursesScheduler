@@ -12,6 +12,16 @@ export function signInWithGoogle(){
         console.log("an error occured when signing in...\n")
     })
 }
+export function signOut(isSuccess:CallableFunction){
+    const auth = getAuth(app);
+    auth.signOut().then(()=>{
+        console.log("Signed out")
+        isSuccess(true)
+    },()=>{
+        console.log("an error occured when trying to sign out")
+        isSuccess(false)
+    })
+}
 export function getUserAuthName(){
     const auth = getAuth(app)
     

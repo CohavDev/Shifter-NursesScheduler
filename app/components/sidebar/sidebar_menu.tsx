@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBarItem from "./sidebar_item";
 import menuIcon from "../../assets/menu.png";
-import { signInWithGoogle } from "../../firebase/authWithGoogle";
+import { signInWithGoogle, signOut } from "../../firebase/authWithGoogle";
 import { getAuth } from "firebase/auth";
 import { app } from "@/app/firebase/firebase.config";
 export default function SideBarMenu(props: any) {
@@ -45,12 +45,17 @@ export default function SideBarMenu(props: any) {
           backgroundColor: "whitesmoke",
         }}
       >
-        <SideBarItem text="עריכת משמרות" />
-        <SideBarItem text="צפייה במשמרות" />
-        <SideBarItem
-          text={props.isLogged ? "מחובר" : "התחברות"}
-          href={!props.isLogged ? signInWithGoogle : () => {}}
-        />
+        {props.isLogged ? (
+          <>
+            <SideBarItem text="התנתקות" href={signOut} />
+            <SideBarItem text="עריכת משמרות" />
+            <SideBarItem text="צפייה במשמרות" />
+          </>
+        ) : (
+          <>
+            <SideBarItem text={"התחבר"} href={signInWithGoogle} />
+          </>
+        )}
       </div>
     </div>
   );
