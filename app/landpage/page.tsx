@@ -3,8 +3,25 @@ import appIcon from "../assets/medical_team.png";
 import googleWebIcon from "../assets/web_google_signIn.png";
 import landPageWallpaper from "../assets/wallpaper_landpage.png";
 import { signInWithGoogle } from "../firebase/authWithGoogle";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { app } from "../firebase/firebase.config";
 import styles from "./page.module.css";
 export default function () {
+    const router = useRouter()
+    useEffect(()=>{
+        const auth = getAuth(app)
+        console.log('auth = ',auth.currentUser)
+        onAuthStateChanged(auth, ()=>{
+            if (auth.currentUser){
+                console.log("redirecting logged in user")
+                router.push("/weekly_scheduele")
+                
+            }
+        })
+        
+    },[])
   return (
     <div
       style={{
